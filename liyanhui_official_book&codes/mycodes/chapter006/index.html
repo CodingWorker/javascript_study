@@ -13,11 +13,30 @@
 		for
 		for-in
 		break和continue
-		wihth语句
+		with语句
 		*/
+		;//空语句
+		//for 循环
+		for(var i=0;i<10;i++){
+			console.log(i*i);
+		}
 
+		// for in
+		console.log('for in demo:');
+		var obj={a:'aa',b:'bb',c:'cc'};
+		for(x in obj){
+			console.log(x);//a b c
+		}
 
-		
+		// with 语句
+		var box={'a':'aa','b':'bb','c':'cc'};
+		with(box){
+			var aa=a;//这样就不需要box.a的来赋值
+			var bb=b;
+			var cc=c;
+		}
+		console.log(aa,bb,cc);
+
 	</script>
 </head>
 <body>

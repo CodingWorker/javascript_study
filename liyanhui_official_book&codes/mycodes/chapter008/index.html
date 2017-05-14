@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+	<title>对象和数组</title>
+	<script type='text/javascript'>
+		// 创建对象
+		//方式1
+		var obj1=new Object();
+		//方式2
+		var obj2=Object();
+		//方式3，常用方式
+		var obj3={'a':'aa'};//带有一个名为a的属性
+		obj3.age=12;//创建第2个属性
+
+		//访问属性的方式：两种
+		//访问方式1
+		console.log(obj3['age']);
+		//访问方式2
+		console.log(obj3.age);
+
+		//对象中定义方法
+		obj3.run=function(){return 'run is called'}
+		console.log(obj3.run());
+
+		//使用delete来删除对象属性
+		console.log(obj3.a);
+		delete obj3.a;
+		console.log(obj3.a);
+
+		//创建数组的多种方式：new 和[]
+		var arr1=new Array();
+		var arr1_1=Array();
+		var arr2=new Array(10);
+		var arr2_1=Array(10);
+		var arr3=['a',1,'c',obj3];
+		console.log(arr3);
+
+		//数组长度
+		console.log(arr3.length);
+		console.log(arr3[2]);
+
+		// toString toLocalString valueOf
+		console.log(arr3.toString());
+		console.log(arr3.valueOf());
+		console.log(arr3.toLocalString);
+		console.log(arr3.join(' | '));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
