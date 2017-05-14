@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+		<title>chapter004数据类型</title>
+		<script type='text/javascript'>
+			// 检测类型操作符
+			var a=12;
+			var s='a test';
+			console.log('type of=>a: ',typeof a,'c: ',typeof s);//type of=>a:  number c:  string
+			var c=function(){}
+			console.log('type of c=>',typeof c);//function
+
+			// typeof 是操作符而非函数
+			console.log(typeof 'as');
+
+			// Undefined类型：值为undefined,如声明的变量未初始化或者未声明的变量
+			var ac;
+			console.log(typeof ac);//undefined
+
+			console.log(typeof aa);//不报错，也为undefined
+
+			// Null类型，只有一个特殊值null
+			console.log(typeof null);//object
+			//Undefiend派生自Nnull
+			console.log('is undefined == null? ',undefined==null);
+
+			// Boolean只有两个值，true和false小写
+			var a=12;
+			// 类型转换
+			console.log('Boolean(a): ',Boolean(a));
+			console.log('False :','空字符串','数字0','null','undefined');
+
+			//Float
+			var i=12;
+			var f=2.0
+			// 支持科学计数法
+			var sci=4.12e+2;
+			console.log(sci);//number
+
+			console.log('the min of float: ',Number.MIN_VALUE);
+			console.log('the max of float: ',Number.MAX_VALUE);
+
+			// Infinity
+			console.log(Number.POSITIVE_INFINITY);
+			console.log(Number.NEGATIVE_INFINITY);
+
+			// 通过isfinity判断值是否超过了isFinite
+			console.log(isFinite(12));
+			console.log(isFinite(100e+1000));
+
+			// NaN
+			console.log(0/0);
+			console.log(12/0*0);
+			console.log(Number.NaN);
+			console.log('is NaN==NaN ',NaN==NaN);
+			console.log('is NaN ',isNaN(NaN));
+			console.log('isNaN("as") ',isNaN('as'));
+			console.log('isNaN(true)',isNaN(true));
+			var n1={
+				toString:function(){return '124'},
+				valueOf:function(){return 'as'}
+			};
+			// 对于对象先测试valueOf的返回值，如果为false在测试该返回值toString的值
+			console.log('isNaN(n1)',isNaN(n1));
+
+			// 将非数值转换为数值：Number parseInt parseFloat
+			console.log(Number('as'));//NaN
+			console.log(Number(true));
+			console.log(parseInt('12'));
+			console.log(parseFloat('12.12'));
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
