@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>Function类型</title>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+使用Function构造函数
+var box=new Function(a,b,c);//申明函数，不推荐
+作为值的函数：函数作为参数，也可以被返回
+
+函数的内部属性
+arguments包含了传入的所有参数的一个数组
+arguments.callee(参数)代替函数名，调用自身
+
+
+this:引用函数具体操作的对象
+window对象，表示全局
+var box={
+	color:'red',
+	set:function(){
+		alert(this.color);//this指box对象
+	}
+};
+box.set();
+
+
+对象，冒充和函数冒充
+apply()和call()方法，冒充其他函数的方法，call只是传递参数不同，其他一样
+主要用来改变作用域
+function saycolor(){
+	
+}
+
+saycolor.call(box);//将作用域改为box
+saycolor.apply(box,参数);
+
+
+
+
+
+
+
+
+
+</body>
+</html>

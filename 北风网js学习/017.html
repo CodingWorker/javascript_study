@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>时间与日期</title>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+var box=new Date();创建一个日期对象，unix日期，1970年1月1日起的毫秒数
+构造方法里可以传入时间参数（可以是毫秒数），默认当前时间
+var box=new Date('11/4/2010');
+Date.parse('11/4/2010');//返回毫秒数，格式错误返回NaN
+Date.UTC(2001，10，12，12，12);必须传入参数，返回毫秒数
+
+时间对象的toString，valueOf(),toLocaleString
+
+toDateString()方法
+getTime()
+setTime()
+setYear()
+gerFullYear()
+setMonth()
+getMonth();//从0算起
+setDay()
+getDay();
+setHours();
+getHours();
+以上函数都可以加UTC
+getUTCMonth();//返回格林威治时间
+
+
+</body>
+</html>

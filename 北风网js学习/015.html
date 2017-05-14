@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>对象和数组</title>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+对象和数组的转换方法，内置方法toString()，valueOf();toLocaleString();
+toString():内容打印出来,valueOf()
+toLocaleString();返回的本地相关信息可能不同
+数组.join('|')连接数组元素为字符串,原数组不变
+arr.push('a','b)压入栈，返回新的长度
+arr.pop()出栈，返回出出栈的元素
+arr.shift()移除数组开头的第一个元素
+arr.unshift('a','b')为数组前端添加元素,ie下返回undefined，其他返回新数组的长度
+
+排序：sort();从小到达排序，返回排序完成的数组，原数组改变
+reverse()反向排列，原数组也改变
+sort排序数字时与字符排序方法相同，可能出现12,2这时可以添加第二个参数（一个函数，参考手册）
+box.concat('a');追加元素，原数组不变
+arr.slice()获取指定区域的数组元素，一个参数指从此为到最后；两个参数指定两个位置
+arr.splice(1，4);表示从第一位取4个，原数组删除该被取出的元素
+arr.splice(1,0,'aaa');在0表示不取出，而是在第一位置处插入a
+
+
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/css;charset=utf-8">
+	<title>DOM文档对象模型基础</title>
+</head>
+<body>
+节点树    IE又有不同
+节点=元素
+节点分为三类：
+ 1、元素节点：其实就是标签
+ 2、文本节点：其实就是标签内的纯文本
+ 3、属性节点：其实就是标签的属性
+ 查找元素：
+ 	1、getElementById('元素id值');
+var box=document.getElementById('box');//找到返回标签元素对象，否则返回null
+注意问题：dom操作必须等待html文档加载完毕才能获取，
+  解决办法：1、将script移到后面
+  			2、使用onload事件来加载文档，window.onload=function(){
+  				代码放在这里
+  				}
+  	一个页面只能允许一个id，表示唯一性，getElementById()建议区分大小写，以免不兼容
+  	如果IE5.0-版本可能不兼容
+	
+		box.tagNam;获取这个元素节点的标签名
+		box.innerHTML;获取元素节点里的文本，包括内含的标签
+
+		获取标签元素的属性的值
+ 		box.id;//id值
+ 		box.title;//title值
+ 		box.style;//style的属性对象
+ 		box.style.color;//获取style属性对象中的color属性的值
+ 		box.name;//name的值
+ 		box.className//获得标签元素的class值
+ 		以上是HTML属性的直接调用
+	自定义属性：有兼容性问题
+		box.bbb;//火狐谷歌不支持，IE支持
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

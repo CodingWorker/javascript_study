@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>变量作用域及内存</title>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+栈内存 对内存 按值访问 按引用访问
+var box={};
+var box2=box;引用传递，两个对象指向同一个地址
+基本数据类型存在栈内存，对象的名字存在栈内存而内容存在存在堆内存，，因此对象赋值时复制的是地址
+
+函数的参数都是按值传递，ecma规定，而不是按址传递，除非不传参数，而直接在函数内使用全局变量
+
+检测基本数据类型变量类型typeof
+检测引用类型用instanceof可以将对象和函数和数组分开
+box instanceof Function
+box instanceof Object
+
+</body>
+</html>

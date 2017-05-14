@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>匿名函数与闭包</title>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+把匿名函数赋值给变量
+var box=function(){
+	
+}
+alert(box);//打印出函数
+alert(box());//打印出函数执行
+
+
+自我执行
+(function(){
+	代码
+})();
+
+var box=(function(){
+	return 'lee';
+})();
+alert(box);//返回lee
+
+函数里放匿名函数产生一个闭包
+function box(){
+	return function(){
+				return 'lee';
+			}
+}
+alert(box()());//打印lee
+
+
+var b=box();
+alert(b());
+
+闭包：
+指有权访问另一个函数作用域中变量的函数
+通过闭包访问局部变量
+function box(){
+	var age=100;
+	return function(){
+				return age;
+			}
+}
+alert(box()());
+
+使用匿名函数实现局部变量驻留内存中从而累加
+function box(){
+	var age=100;
+	return function(){
+				age++;
+				return age;
+			}
+}
+var b=box();
+alert(b());//101
+alert(b());//102
+alert(b());//103
+alert(b());//104
+alert(age);//undefined
+但这样会占用过多的内存，一般情况下不用闭包
+用完后可以b=null解除引用等待垃圾回收
+
+
+
+
+
+
+
+
+</body>
+</html>

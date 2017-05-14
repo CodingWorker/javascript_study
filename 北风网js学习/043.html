@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/css;charset=utf-8">
+	<title>BOM浏览器对象模型</title>
+</head>
+<body>
+缺少规范，浏览器之间差异大
+windows对象
+  六大属性,本身是对象，document下级也有5大属性,此又是对象，其他都是这样
+  	document frames history location navigator  screen
+  方法:closed...
+调用
+window.属性或方法()
+也可以直接属性或方法()
+但浏览器的兼容性，使得有些浏览器不识别，那么就会讲座变量，建议强制操作，即window.属性或方法()
+
+系统对话框iuan:alert() 
+			confirm()//这个有确定和取消按钮，返回布尔值，确定返回真取消返回假
+			prompt('输入一个数字','0')输入提示框，第一个参数是提示，第二个参数是默认值，返回输入的值
+			print()打印对话框
+			find()查找对话框
+			defaultStatus='lee';状态栏默认值，初始值
+			status='sss';设置状态栏，临时的
+新建窗口：
+    1、第一个参数表示打开一个默认的URL或打开一个窗口
+	open;弹出一个新的空白窗口
+	open(将要导航的URL)//open('http://www.baidu.com')
+	2、第二个参数open(将要导航的URL,窗口的名称或目标);
+	open('http://www.baidu.com','baidu');
+	open('http://www.163.com','baidu');
+	命名可以给新窗口设置一个名称，凡是以这个名称命名的新的url将在此窗口打开，如上都在baidu窗口打开，否则不断打开新的窗口
+	目标：_blank 在新的窗口
+		  _parent 表示在本窗口内加载
+		  open('http://www.163.com','_blank');
+		  open('http://www.163.com','_parent');
+	3、第三个参数：特定的字符串参数表示窗口的属性
+    open('http://www.baidu.com','baidu'.'width=400,height=400,top=100,left=100其他参数');浏览器一般会提示或阻止弹出窗口
+
+open本身返回window对象，
+window.alert('dd');
+var box=open();
+box.alert();弹出的子窗口的警告框
+
+操作父类，子窗口操纵父窗口
+document.onclick=function(){
+	window.opener.document.write('子窗口让我输出的!');//window可以生省略，opener是父窗口
+}
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

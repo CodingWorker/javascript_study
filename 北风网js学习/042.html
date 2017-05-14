@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>匿名函数与闭包</title>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+模仿块级作用域if语句 for语句（js没有跨级作用域）
+function box(){
+	for(var i=0;i<5;i++){
+
+	}
+	var i;//即使重新申明，也不会影响之前申明初始化的数据
+	alert(i);//仍能访问到i
+}
+只认第一次申明，除非初始化
+
+使用块级作用域
+function box(){
+	function(){//包含自我执行的匿名函数，就可以实现私有作用域
+		for(var i=0;i<5;i++){
+			alert(i);
+		}
+		这里面使用了abc变量
+	}();
+	alert(i);//不能访问到i
+	这里可以继续使用abc变量
+}
+私有作用域表示
+(function(){
+//这里就是全局变量的私有作用域
+	var age=100;
+	alert(age);
+})()
+完后不用手动销毁age就可自动销毁
+
+
+私有变量
+私有函数
+对外可见的公共接口即为特权方法
+function Box(){
+	var age=100;//私有变量，外部不可访问
+	function run(){
+		return '运行中...';//私有函数，外部不可访问
+	}
+	this.publicGo=function(){//对外可见的公共接口即为特权方法,外部可访问
+		return age+run();
+	}
+	this.getAge=function(){//对外可见的公共接口即为特权方法
+		return age;
+	}
+}
+
+静态私有变量
+prototype共享
+
+
+字面量方法的私有变量和方法
+
+
+
+
+
+
+
+
+</body>
+</html>

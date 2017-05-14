@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/css;charset=utf-8">
+	<title>DOM文档对象模型基础</title>
+</head>
+<body>
+节点树    IE又有不同
+节点=元素
+节点分为三类：
+ 1、元素节点：其实就是标签
+ 2、文本节点：其实就是标签内的纯文本
+ 3、属性节点：其实就是标签的属性
+ 查找元素：
+ 	1、getElementById('元素id值');
+var box=document.getElementById('box');//找到返回标签元素对象，否则返回null
+注意问题：dom操作必须等待html文档加载完毕才能获取，
+  解决办法：1、将script移到后面
+  			2、使用onload事件来加载文档，window.onload=function(){
+  				代码放在这里
+  				}
+  	一个页面只能允许一个id，表示唯一性，getElementById()建议区分大小写，以免不兼容
+  	如果IE5.0-版本可能不兼容
+	
+		box.tagNam;获取这个元素节点的标签名
+		box.innerHTML;获取元素节点里的文本，包括内含的标签，非w3c标准，可以赋值（重写）
+
+		获取标签元素的属性的值
+ 		box.id;//id值
+ 		box.title;//title值
+ 		box.style;//style的属性对象
+ 		box.style.color;//获取style属性对象中的color属性的值
+ 		box.name;//name的值
+ 		box.className//获得标签元素的class值
+ 		以上是HTML属性的直接调用，都可以赋值更改
+	自定义属性：有兼容性问题
+		box.bbb;//火狐谷歌不支持，IE支持
+
+	----------------------
+	 2、getElementsByTagName();返回所有元素的集合数   组，使用时一定要用索引
+
+	 var arr=getElementsByTagName();没有兼容性问题
+	 arr.lenght;//数组长度
+	 arr[0];//第一个
+	 arr.item(0);//与上面的一样
+	 arr[0].tagName;
+	 arr[0].tagTitle;
+
+	获取body节点
+		var body=getElementsByTagName('body')[0];
+
+	var all=document.getElementsByTagName('*');所有的标签集合数组,IE将文档申明标签也计算进去，从而比谷歌火狐多一个
+
+-------------------------
+	3、getElementsByName();//获取相同名字的集合数组，多用于表单input的获取
+	var box=getElementsByName('box');
+	box.id;
+	IE浏览器在获取不合法的HTML中的name时，会获取不到
+
+	4、getAttribute();//获取属性
+	var box=document.getElementById('box');
+	box.getAttribute('style');//IE返回对象，其他返回字符串
+	box.getAttribute('id');
+	box.getAttribute('bbb');//这里不会产生兼容性问题，自定义全部兼容
+	box.getAttribute('class');//IE无法获取，其他可以
+	box.getAttribute('className')//IE可以，其他不行
+	跨浏览器获取class值
+	if(box.getAttribute('className'==null){
+		box.getAttribute('class');
+	}else{
+		box.getAttribute('className');
+	}
+
+	建议：尽量避免使用getAttribute访问style和onclick属性，会有不兼容
+
+	5、setAttribute()给属性赋值或创建一个属性和值
+		var box=document.getElementById('box');
+		box.setAttribute('title','标题');
+		box.setAttribute('align','center');
+		box.setAttribute('bbb','ccc');
+		此方法在IE下对style和onclick有问题
+
+	6、rmAttribute()移除属性,IE6及更低浏览器不支持
+		box.rmAttribute('style');
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>OOP与原型</title>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+工厂模式，创建一个函数用来创建相似的对象
+function createObject(name,age){
+	var obj=new Object();
+	obj.name=name;
+	obj.age=age;
+	obj.run=function(){
+		return this.name+'正在于运行中';
+	};
+	return obj;//返回对象
+}
+var box=createObject('lee','23');
+var box2=createObject('jack','22');
+
+构造函数创建相似的对象，解决了对象的识别问题
+function box(name,age){
+	this.name=name;
+	this.age=aege;
+	this.run=function (){
+		return this.name;
+	};
+}
+function desk(name,age){
+	this.name=name;
+	this.age=aege;
+	this.run=function (){
+		return this.name;
+	};
+}
+var box1=new box('lee','23');
+var box2=new box('jack','22');
+var box3=new desk('jack','22');
+box1 instanceOf box3 返回false
+构造函数也是函数，但函数名第一个字母大写，必须new构造函数创建对象，传递参数
+
+对象冒充方法
+var o=new Object;
+Box.call(o,参数);o冒充了Box
+alert(o.run());
+
+
+原型：prototype
+构造函数
+function Box(name,age){
+	this.name=name;
+	this.age=age;
+	this.run=function(){
+		return this.name;
+	}
+}
+
+
+原型：prototype
+function Box(){};
+Box.prototype.name='a';
+Box.prototype.age=10;
+Box.prototype.run=function(){
+	return this.name;
+}
+var box1=new Box();
+alert(box1.name);//调用方法一样，创建方法不同
+
+区别：共享
+即两个实例化原型的方法是一样的(同一个)，即相当于引用
+box1.run==box2.run;返回true
+
+
+构造属性box1.constructor;
+原型属性box1.__proto__;
+
+Box.prototype.isPrototypeOf(box1)//判断一个对象的实例化是否是一个原型的对象
+实例属性并没有重写原型属性，实例属性不会共享，即实例化更改了实例的属性并并不影响其他原型的实例化属性
+
+原型的字面量的写法
+使用对象实例无法访问原型prototype，使用构造函数名（对象名）可访问
+
+function Box(){};
+Box.prototyoe={
+	name:'a',
+	age:'10',
+	run:function(){
+		return this.name;
+	}
+}
+var box=new Box();
+
+
+
+
+
+
+
+
+
+
+
+
+alert('name' in box1);
+Box.prototype.hasOwnPrperty('name');
+</body>
+</html>

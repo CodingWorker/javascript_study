@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>DOM文档对象模型基础</title>
+</head>
+<body>
+DOM的节点  属性节点和文本节点  
+三个节点的属性值：nodeName nodeType nodeValue
+var box=document.getElementById('box');
+alert(box.nodeName);//获取元素节点标签名，以与tagName等价
+alert(box.nodeType);//获取元素节点的类型值：1代表元素节点 			2代表属性节点类型 3代表文本节点类型
+alert(box.nodeValue);//返回元素节点的value值，不存在则为null
+
+文本节点不等于文本内容，元素节点的文本内容是一个整体包括标签
+
+层次节点属性：
+<div id='box'>测试DIV<em>倾斜</em>内容</div>
+var box=document.getElementById('box');
+box.childNodes;返回box元素节点的所有子节点（文本节点和元素节点，不包含属性节点）的列表数组
+box.chileNodes.lenght;返回3
+三个子节点为：测试DIV<em>倾斜</em>内容
+第一个子节点:测试DIV，这个节点又称为文本节点
+第二个子节点为：<em>倾斜</em>，这个节点称为元素节点
+第三个子节点为：内容,又称为文本节点
+
+box.childNodes[0];返回Object Texe，表示一个文本节点对象
+box.childNodes[0].nodeType;返回3,表示文本节点
+box.childNodes[0].nodeValue;获取当前文本节点的文本内容
+box.childNodes[0].nodeName;文本节点没有标签名
+
+问文本节点无法使用innerHTML,因为他本身就是文本
+
+nodeValue不可以包含HTML标签，否则会转换为标签实体在浏览器上直接显示标签，是在子节点上操作，而innerHTML是在父节点上操作
+
+
+
+var box=document.getElementById('box');
+box.childNodes[0].nodeValue();
+box.firstChild.nodeValue();获取第一个子节点的value值，文本节点就是该文本，元素节点则是该元素value属性值
+box.lastChild.nodeValue();获取最后一个子节点的value值，文本节点就是该文本，元素节点则是该元素value属性值
+
+ownerDocument属性 返回当前节点所在文档的根节点，相当于document
+
+
+三个节点 parentNodes父节点 previousSibling同级上一个节点 nextSibling同级下一个节点
+
+box.firstChild.nextSibling.nodeName;下一个同级节点标签名
+box.lastChild.previousSibling.nodeName;上一个同级节点标签名
+
+属性节点：
+box.attributes;集合数组，并且保存这个元素节点的属性列表
+box.attributes.length;
+box.attributes[0].nodeType;//属性类型
+box.attributes[0].nodeName;//属性名
+box.attributes[0].nodeValue;//属性值
+遍历是从后向前的
+或者box.attributes['title'].nodeValue;
+	box.attributes.getNamedItem('title');
+
+//忽略空白字符，
+
+
+
+
+
+移除空白字符
+
+
+节点操作：动态的创建删除复制节点
+	1、write方法
+		document.write('afadfaf');这个会重写整个页面
+		一般用于测试
+	创建节点方法
+	1、document.createElement('p');创建元素节点，但还未添加到文档中，仅是驻留在内存中
+	2、appendChild()
+	var box=document.getElementById('box');
+	var p=document.createElement('p');
+	box.appendChild(p);//添加到box的子节点的末位，作为box的最后一个子节点，这里仅是创建了一个元素标签
+	3、createTextNode();穿件文本节点
+	var text=document.createTextNode('测试div4');
+	p.appendChild(text);//把文本添加到p里
+	box.appendChild(text);//把文本添加到box里，作为box的最后一个子节点
+
+	4、insertBefore()方法将节点创建到指定节点的前面
+	box.parentNode.insertBefore(p,box);将p节点添加到div（box）节点前面,要用到父级节点
+
+	crearteChild在IE678下可能出现兼容性问题
+
+	5、replaceChild()替子节点
+	var span=document.getElementsByTagName('span')[0];
+	var em=docment.createElement('em');
+	span.parentNode.replaceChild(em,span)第一个参数是用来替换的节点,第二个参数是被替换的目标节点;被替换的节点整体都被删除
+
+	6、cloneNode克隆节点
+	var clone=box.firstChild.cloneNode(true);
+	box.appendChild(clone);//解决好兼容性问题，如火狐谷歌下去掉空白节点
+	var clone=box.firstChild.cloneNode(false);参数false仅克隆元素节点，相当于createElement
+
+	7、removeChild()删除子节点
+	box.removeChild(box.firstChild);//删除第一个子节点
+	box.removeChild(box.lastChild);//删除最后子节点
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>OOP与原型</title>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+工厂模式，创建一个函数用来创建相似的对象
+function createObject(name,age){
+	var obj=new Object();
+	obj.name=name;
+	obj.age=age;
+	obj.run=function(){
+		return this.name+'正在于运行中';
+	};
+	return obj;//返回对象
+}
+var box=createObject('lee','23');
+var box2=createObject('jack','22');
+
+构造函数创建相似的对象，解决了对象的识别问题
+function box(name,age){
+	this.name=name;
+	this.age=aege;
+	this.run=function (){
+		return this.name;
+	};
+}
+function desk(name,age){
+	this.name=name;
+	this.age=aege;
+	this.run=function (){
+		return this.name;
+	};
+}
+var box1=new box('lee','23');
+var box2=new box('jack','22');
+var box3=new desk('jack','22');
+box1 instanceOf box3 返回false
+构造函数也是函数，但函数名第一个字母大写，必须new构造函数创建对象，传递参数
+
+对象冒充方法
+var o=new Object;
+Box.call(o,参数);o冒充了Box
+alert(o.run());
+
+
+
+
+
+
+
+</body>
+</html>

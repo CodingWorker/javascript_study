@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>DOM文档对象模型进阶</title>
+</head>
+<body>
+alert(Node);//IE不支持Node
+某节点.nodeType===1;表示元素节点，IE支持
+某节点.nodeTYPE===3;表示文本节点，IE支持
+Node.ElEMENT_NODE表示元素节点的类型值，IE不支持
+Node.TEXT_NODE表示文本节点类型，IE不支持
+if(xx.nodeType===Node.ElEMENT_NODE)为元素节点时为真
+if(xx.nodeType===Node.TEXT_NODE)为文本节点时为真
+通过英文常量来使得判断更加清晰
+但IE不支持
+
+
+2、document类型，表示文档的根节点
+它的nodeType  9;
+	nodeValue无值
+	nodeName  document
+document.documentElement;直接获取<html>这个标签
+document.body获取body，DOM提供的简便方法
+
+document.doctype;获取文档申明标签，IE7之下会显示null
+要用document.childNodes[0],且理解为注释类型
+
+document.title;获得title,可赋值
+document.URL;获得当前的URL路径
+
+以下仅能在服务器端
+document.domain；获取域名
+document.referrer;获取上一个url
+
+对象集合：获取标签集合
+document.links;所有集合<a>带href
+document.images;所有集合<img>
+
+
+3、Element类型   1
+ 
+4、Text类型   3
+创建文本节点时有一些注意
+var box=document.getElementById('box');
+var text1=document.createTextNode('Mr');
+var text2=document.createTextNode('lee');
+box.appendChild(text1);
+box.appendChild(text2);
+box.normalize();//合并同一级的文本节点
+box.childNodes 为length为1了
+分离文本节点
+box.childNodes[0].splitText(3);将box的第一个文本节点的前三个字符分离成新的节点，从而最后变成两个文本节点
+
+删除
+box.childNodes[0].deleteData(0,3);从第0个删除3个
+box.childNodes[0].insertData(0,'hello');从第0位置添加hello
+box.childNodes[0].replaceData(0,3,'miss');从第0位置到第三位置替换成Miss
+box.childNodes[0].substringData(0,2);仅截取前两个字符，并不改变原数据
+
+
+5、注释类型  8 也属于子节点
+IE中可以使用!当作元素来访问
+document.getElementsByTagName('!');
+
+6、属性节点类型    2 
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>OOP与原型</title>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+工厂模式，创建一个函数用来创建相似的对象
+function createObject(name,age){
+	var obj=new Object();
+	obj.name=name;
+	obj.age=age;
+	obj.run=function(){
+		return this.name+'正在于运行中';
+	};
+	return obj;//返回对象
+}
+var box=createObject('lee','23');
+var box2=createObject('jack','22');
+
+
+</body>
+</html>

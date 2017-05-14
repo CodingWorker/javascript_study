@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>对象和数组</title>
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+对象类型
+new和字面量方法
+var obj=new Object();//使用new关键字
+对象包含属性和方法
+创建属性：obj.name='a';
+		obj.age=23;
+new关键字可以省略，即var obj=Object();
+字面量方法：
+var box={};
+var box={
+	'name':'a',
+	'age':23
+}
+也可以两种方法混用：
+var box={};
+box.name='a';
+
+访问元素：
+box.name或box['name']
+
+
+创建方法：
+functon aa(){
+	
+}
+box.run=aa;
+alert(box.run());//执行方法
+
+
+var box={
+	run:function(){//以匿名函数创建方法
+
+	}
+}
+
+alert(box.run());
+delete box.name;//删除对象的属性
+
+可以通过对象来向函数传参，对象属性为形参，属性值为实参
+
+函数box可以接受匿名对象参数即 box({
+									name：a,
+									age:23
+								});
+
+
+</body>
+</html>

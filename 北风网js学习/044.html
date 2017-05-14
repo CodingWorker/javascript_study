@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/css;charset=utf-8">
+	<title>BOM浏览器对象模型</title>
+</head>
+<body>
+窗口的位置和大小
+浏览器计算方式不同或不支持
+
+alert('screenLeft');
+alert('screenTop');//返回据顶部距离，浏览器不同
+火狐不支持，会报错，此时要用window.screenLeft，这时不识别最多是个undefined
+火狐的：screenX
+		screenY
+谷歌和苹果都支持，但IE不支持
+
+跨浏览器操作：
+var leftX=typeof window.screeLeft=='number'?window.screenLeft:window.screenX;
+var leftY=typeof window.screeTop=='number'?window.screenTop:window.screenY;
+
+
+窗口页面的大小：
+innerWidth innerHeight IE不支持
+outerWidht outerHeight 加上了边框
+在谷歌浏览器中两者相同，IE支持
+
+跨浏览器获取可视页面窗口
+var widht=window.innnerWidth;//window必须有，因为IE不支持，如果支持inner的就使用它
+var height=window.innerHeight;
+
+//不支持的就是用document对象的方法
+if(typeof width!='number'){//标准模式
+	if(document.compatMode=='CSS1Compat'){//判断模式
+		width=document.documentElement.clientWidth;
+		height=document.documentElement.clientHeight;
+	}else{//IE的，非标准模式
+		width=document.body.clientWidth;
+		height=document.body.clientHeight;
+	}
+}
+
+调整浏览器位置
+moveTo(100,100);//移动到坐标100，100旧版火狐支持，新版火狐不支持
+moveBy(100,100);在原基础上向下和向右移动100像素，谷歌不支持
+
+调整浏览器的大小
+resizeTo(100,100);
+resizeBy(100,100);//可以使用负值
+
+
+
+
+
+</body>
+</html>
