@@ -70,6 +70,25 @@
 			console.log(Number(true));
 			console.log(parseInt('12'));
 			console.log(parseFloat('12.12'));
+
+			// 字符串：特殊字符
+			console.log('a\nb');
+			console.log('a\\nb');//需要使用\对特殊字符\进行转义
+			var val=12;
+			console.log(val.toString());
+			console.log(typeof val.toString());
+			//转换为进制结果
+			console.log(val.toString(2));//转换为2进制
+			console.log(val.toString(3));
+
+			// String 转换为字符串类型
+			console.log(String(null));
+			console.log(String(NaN));
+			console.log(String(undefined));
+
+			// Object
+			var obj=new Object();
+			console.log(typeof obj);
 		</script>
 	</head>
 	<body>
