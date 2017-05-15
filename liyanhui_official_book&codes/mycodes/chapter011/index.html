@@ -134,15 +134,23 @@
 
 		console.log(sumObj.sumFun1(100,100));//200
 		console.log(sumObj.sumFun);//undefined
+		console.log('====call/apply===');
+		function tc(){
+			return this.color;
+		}
+
+		var box={
+			color:'blue'
+		};
+		console.log(tc.call(this));//red，this为window从而此时t1执行的作用域就为window
+		console.log(tc.call(window));
+		console.log(tc.call(box));//此时t1的作用域为box
 
 
 
 
 
 
-
-
-		
 	</script>
 </head>
 <body>
