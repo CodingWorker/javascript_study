@@ -37,9 +37,47 @@
 	// String对象的正则用法
 	var s='alert(str.match(pattern).length)';
 	console.log(s.match(/(m\w{3}).+?(l\w{3})/ig));
+	console.log(s.replace(/pattern/ig,'regexp'));//alert(str.match(regexp).length)
+	console.log(s.replace(/t/ig,'<=t=>'));//aler<=t=>(s<=t=>r.ma<=t=>ch(pa<=t=><=t=>ern).leng<=t=>h),如果没有指明全局匹配则只会替换第一个t
 	console.log(s.search(/patt/));
 	console.log(s.split(/t/));
+	console.log('this is a test'.split(/ /ig));//以空格为分隔分为字符串数组
+	console.log('this is a test'.split(/\b/ig));//\b匹配单词边界，将' '也会分离出来
 
+
+	// RegExp的属性
+	var pattern=/(t)est/ig;
+
+	if(pattern.test('this is a test')){
+		// 被匹配的字符串
+		console.log(RegExp.input);//this is a test
+	}
+	var p2=/(t.{3})/ig;
+	p2.test('this is another test');
+	//input和$_都是被匹配的自符串
+	console.log(RegExp.input);//被匹配的字符串this is another test
+	console.log(RegExp.$_);//被匹配的字符串，this is another test
+
+	//最后一个匹配的字符串lastMath 和$&,特殊字符的很多不被支持
+	console.log('lastMatch demo:');
+	console.log(RegExp.lastMatch);//this
+
+	// lastParen最后一对圆括号内的匹配子串
+	console.log(RegExp.lastParen);//this
+	console.log(RegExp.multiline);
+	console.log(RegExp.leftContext);
+	console.log(RegExp.rightContext);//is another test\
+	console.log(RegExp.lastMatch);
+
+	//RegExp的实例属性
+	console.log(p2.global);
+	console.log(p2.ignoreCase);
+	console.log(p2.lastIndex);
+	console.log(p2.multiline);
+	console.log(p2.source);
+	console.log(/\b/ig.exec('this is a test for \\b'));
+	console.log('this is a test for \\b'.split(/\b/ig));
+	console.log('this is a test for \\s'.split(/\s/ig));//\s匹配空格、制表符
 	</script>
 </head>
 <body>
