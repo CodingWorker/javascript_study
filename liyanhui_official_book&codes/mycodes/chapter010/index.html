@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+	<title>正则表达式</title>
+	<script type='text/javascript'>
+	// 创建正则表达式的两种方式：1.new RegExp 2.字面量
+	var reg=new RegExp();
+	console.log(reg);
+	console.log('/(?:)/'==reg);//true,可见使用new和字面量的方式是一样的
+	var reg2=/html/ig;//不用单引号或者双引号括起来
+
+	// 测试正则表达式：test 和exec
+	// test只是检测能否匹配，返回true或false
+	console.log((/html/ig).test('type="text/HtMl"'));//true,最好将带有模式修饰符的正则表达式括起来，也可以不括起来
+
+
+	//exec 将返回匹配信息
+	console.log(/html/ig.exec('html,type="text/html"'));//["html", index: 0, input: "html,type="text/html""],由此可见值匹配第一个
+
+	var str='由此this is a box 由此可见值匹配第一';
+	// 1.使用new 的test匹配
+	var p1=new RegExp('box','ig');
+	console.log(p1.test(str));
+
+	// 2.使用new 的exec匹配
+	console.log(p1.exec(str));
+
+	// 3.使用字面量的test匹配
+	var p2=/box/ig;
+	console.log(p2.test(str));
+
+	//4.使用字面量的exec匹配
+	console.log(p2.exec(str));
+
+	// String对象的正则用法
+	var s='alert(str.match(pattern).length)';
+	console.log(s.match(/(m\w{3}).+?(l\w{3})/ig));
+	console.log(s.search(/patt/));
+	console.log(s.split(/t/));
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
