@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content='text/html;charset=utf-8'/>
+	<title>Function类型</title>
+	<script type="text/javascript">
+		// 定义普通函数
+		function test(){return 1;}
+
+		// 使用变量接受函数指针
+		var tf=function(){return 1;}
+
+		console.log(test);//打印函数的定义-这个函数对象本身
+		console.log(test.toString());//返回字符串，function test(){return 1;}
+		console.log(test.valueOf());//返回的是这个函数对象自身
+		console.log(test.toLocaleString());//返回字符串，function test(){return 1;}
+
+		var f1=test.valueOf();
+		console.log(typeof f1);//function
+		console.log(test==f1);//true
+
+		//使用Function的构造函数-极不推荐
+		var f2=new Function('num1','num2','return num1+num2');//前面的是参数，最后面的是函数体，都以字符串来表示
+		console.log(f2(10,100));//110
+
+		console.log(test instanceof Object);//true
+
+		// 函数作为参数
+		function tt(sum,num1,num2){
+			if(typeof sum =='function'){
+				return sum(num1,num2);
+			}else{
+				return 'sum 类型不正确';
+			}
+		}
+
+		function sum(num1,num2){
+			return num1+num2;
+		}
+
+		var sumVal=tt(sum,10,100);
+		console.log(sumVal);
+
+		//返回函数
+		function returnFun(){
+			return function(num1,num2){
+				return num1+num2;
+			};
+		}
+
+		var fsum=returnFun();
+		console.log(typeof fsum);
+		console.log(fsum(12,100));
+
+		// 函数的arguments和callee
+		function arguTest(var1,var2,var3){
+			for(var x in arguments){
+				//x 代表索引，从0开始
+				console.log(x);
+				console.log(arguments[x]);
+			}
+
+			console.log('arguments:',arguments);
+			console.log(arguments.length);
+			console.log('callee: ',arguments.callee);//callee代表本函数的定义，包含注释
+		}
+
+		arguTest(1,'a',{a:1});
+
+		function getJiecheng(num){
+			if(num<=0){
+				return 'bad request';
+			}
+
+			if(num==1){
+				return 1;
+			}
+
+			return num*arguments.callee(num-1);//引用自身，不受函数名的限制
+		}
+
+		console.log(getJiecheng(5));
+
+		// window对象定义了作用域
+		var color='red';
+		console.log(window.color);
+		var box={
+			color:'blue',//这里定义的color属于box
+			outputColor:function(){
+				return ('the result of outputColor: ',this.color);//this指代box对象
+			}
+		};
+
+		console.log('box.color: ',box.color);//blue
+		console.log('this.color in box: ',box.outputColor());//blue
+		console.log('this color in window: ',this.color);//red,因为在window对象内
+
+		function sayColor(){
+			return this.color;//根据不同的执行环境指代不同的对象
+		}
+
+		var b={};
+		b.color='yellow';
+		b.sayColor=sayColor;
+
+		console.log(sayColor());//red
+		console.log(b.sayColor());//yellow
+		console.log('====函数的属性：length和prototype=====');
+		// 函数属性：length和prototype
+		console.log(tt.length);//命名参数的个数
+		console.log(tt.prototype);//函数的原型：为一个对象，construcotr和__proto__
+
+		function sumFun(num1,num2){
+			console.log(this.valueOf());
+			return num1+num2;
+		}
+
+		function sumFun1(num1,num2){
+			console.log(this.valueOf());
+			return sumFun.apply(this,[num1,num2]);//将this传递进去相当于将被调用函数的作用域限制为this
+		}
+
+		function sumFun2(num1,num2){
+			console.log(this.valueOf());
+			return sumFun.call(this,num1,num2);
+		}
+
+		var sumObj={};
+		sumObj.sumFun1=sumFun1;
+
+		console.log(sumFun1(10,100));
+		console.log(sumFun2(12,100));
+
+		console.log(sumObj.sumFun1(100,100));//200
+		console.log(sumObj.sumFun);//undefined
+
+
+
+
+
+
+
+
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>
