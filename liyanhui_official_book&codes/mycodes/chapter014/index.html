@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+		<title>内置对象</title>
+		<script type='text/javascript'>
+			// 两个：Global和Math
+			// 在web中，window充当Global对象
+			//1. uri编码方法:encodeURI和encodeURIComponent，后者比前者编码更加的彻底，因此通常使用后者
+			var s='http://www.example.com?name=实例&index=页码&page=1';
+			console.log(s);
+			console.log(encodeURI(s));//http://www.example.com?name=%E5%AE%9E%E4%BE%8B&index=%E9%A1%B5%E7%A0%81&page=1
+			console.log(encodeURIComponent(s));//http%3A%2F%2Fwww.example.com%3Fname%3D%E5%AE%9E%E4%BE%8B%26index%3D%E9%A1%B5%E7%A0%81%26page%3D1
+
+			//decodeURI 和decodeURIComponent，decodeURIComponent可以解码encodeURI编码的，而decodeURI不可以解encodeURIComponent编码的
+			var s1=encodeURI(s);
+			var s2=encodeURIComponent(s);
+			console.log('encoded:',s1,'decodeURI: ',decodeURI(s1),'decodeURIComponent: ',decodeURIComponent(s1));
+			console.log('encoded:',s2,'decoded: ',decodeURIComponent(s2));
+
+			//eval方法
+			window.eval('var cc=100');
+			//delete cc;
+			console.log(cc,typeof dd == 'undefined');
+
+			console.log(window.NaN,Number.NaN,window.NaN==Number.NaN);//false，因为属于不同的属性，而这个属性又是个引用类型
+			console.log(Number);//打印构造函数
+			console.log(Array);
+			console.log(Math.floor(Math.random()*10+1));
+
+
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

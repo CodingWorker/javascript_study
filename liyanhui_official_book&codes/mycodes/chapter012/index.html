@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+		<title>变量、作用域及内存</title>
+		<script type='text/javascript'>
+			function test(arr){
+				arr[arr.length]=12
+				console.log(arr);
+			}
+			var arr=[1,2,3];
+			test(arr);
+			console.log(arr);//被修改
+			function change(obj){
+				obj.name='test';
+				obj.age=12;
+			}
+
+			var obj=new Object();
+			console.log('before: ',obj);
+			change(obj);
+			console.log('after: ',obj);//changed
+
+			console.log(obj instanceof Object);
+			console.log(change instanceof Function);
+			console.log('s' instanceof String);//false
+			console.log(12 instanceof Number);//false
+			console.log(/ie/ instanceof RegExp);
+
+			function a(){
+				return 'aa';
+			}
+			console.log(window.a());//定义的所有的变量和函数都是window对象的属性和方法
+
+			if(true){
+				var ac='ac';
+			}
+			console.log(ac);//ac
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

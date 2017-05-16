@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+		<title>基本包装类型</title>
+		<script type='text/javascript'>
+			var p1=new String('Mr.Lee');
+			console.log(p1);
+			p1.name='Lee';
+			p1.age=function(){return 12;}
+			console.log(p1);
+			console.log(typeof p1);
+			console.log(Number.MAX_VALUE);
+			console.log(Number.MIN_VALUE);
+			console.log(Number.NaN);
+			console.log(Number.prototype);
+
+			var s=new String('http://www.w3.org/TR/html4/loose');
+			console.log(s.toString());
+			console.log(s.valueOf());
+			console.log(s.toLocaleString());
+			console.log(s.length);
+			console.log(s.constructor);
+			console.log(s.prototype);
+			s.age=12;
+			console.log(s);
+			console.log(s.prototype);
+			console.log(s.charCodeAt(1));//116
+
+			// substr和substring 和slice
+			console.log(s.slice(1,11));//位置
+			console.log(s.substring(1,11));
+
+			console.log(s.substr(1,11));//个数
+
+			// indexOf 和lastIndexOf
+			console.log(s.valueOf());
+			console.log(s.indexOf('htm',5));
+			console.log(s.lastIndexOf('org',0));//-1
+			console.log(s.lastIndexOf('o',20));//指定位置先前搜索
+
+			//找出所有的t
+			var posArr=[];
+			var pos=s.indexOf('t',0);
+			while(pos!=-1){
+				posArr.push(pos);
+				pos=s.indexOf('t',pos+1);
+			}
+			console.log(posArr);
+			// toLowerCase toUpperCase toLocaleLowerCase toLocaleUpperCase
+
+			// 模式匹配：split search replace match
+			console.log(String.fromCharCode(116));//t
+			console.log(s.localeCompare(p1.name));//-1
+			console.log(s.link('http://baidu.com'));//<a href="http://baidu.com">http://www.w3.org/TR/html4/loose</a>
+
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
