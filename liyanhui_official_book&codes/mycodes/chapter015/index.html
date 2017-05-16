@@ -5,6 +5,7 @@
 		<meta http-equiv="Content-Type" coneten='text/html;charset=utf-8' />
 		<title>面向对象与原型</title>
 		<script type='text/javascript'>
+		/*
 			function Box(){}//创建了原型
 			Box.prototype.name='a';
 			Box.prototype.age=10;
@@ -17,6 +18,223 @@
 			console.log(b1.run==b2.run);
 			console.log(b1.name);
 			console.log(Box.prototype.isPrototypeOf(b1));//判断对象是否指向了该构造函数的原型对象
+		*/
+		//创建对象
+		//方法1,使用object，动态添加属性和方法，但是不能重复利用，创建多个对象需要写多个重复代码，也不能判断对象的专属类型（只知道属于Object）
+		var box=new Object();
+		box.name='Daniel';
+		box.age=10;
+		box.run=function(){return 'name: '+this.name+', age: '+this.age;};
+
+		var box1=new Object();
+		box1.name='Daniel';
+		box1.age=12;
+		box1.run=function(){return 'name: '+this.name+', age: '+this.age;};
+
+		//==比较的是内存地址
+		console.log(box.name==box1.name);//true，基本类型值相同
+		console.log(box.age==box1.age);//false,基本类型值不同
+		console.log(box.run==box1.run);//false,引用类型
+
+		//方法2：两个对象的方法引用外部的同一方法可以保证两个方法的==为true
+		console.log('===工厂模式====');
+		//方法3：工厂模式
+		function run(){
+			return 'name: '+this.name+', age: '+this.age;
+		}
+
+		function createObj(name,age){
+			var obj=new Object();
+			obj.name=name;
+			obj.age=age;
+			obj.run=window.run;
+
+			return obj;
+		}
+
+		var b1=createObj('Daniel',10);
+		var b2=createObj('Daniel',12);
+		console.log(b1.name==b2.name);//true
+		console.log(b1.age==b2.age);//false
+		console.log(b1.run==b2.run);//true
+
+		console.log('===使用构造函数+原型===');
+		//方法4：使用构造函数+原型
+		function Box(name,age){
+			this.name=name;
+			this.age=age;
+			this.run=function(){return 'name: '+this.name+', age: '+this.age;};
+		}
+
+		var bc1=new Box('Daniel',10);
+		var bc2=new Box('Daniel',12);
+
+		console.log(bc1 instanceof Box);//true
+		console.log(bc2 instanceof Box);
+		console.log(bc1.name==bc2.name);
+		console.log(bc1.age==bc2.age);
+		console.log(bc1.run==bc2.run);//false,因为这时引用类型run的命名空间都不同
+		console.log(bc1.run());
+		console.log(bc2.run());
+		//对象冒充
+		console.log('对象冒充');
+		console.log(bc1.run.call(window));//自动将run方法加到了window上
+		console.log(typeof window.run);
+		var name='window.Daniel';
+		var age=12;
+		console.log(bc2.run.call(window));
+
+		console.log(window.run instanceof Function);//true
+
+		//对象冒充
+		var o=new Object();
+		Box.call(o);//o也具有了Box的属性和方法
+		console.log(o);
+		console.log(new Box());
+		console.log(o instanceof Box);
+
+		var cc=new Function('num1','num2','return num1+num2;');//参数使用参数名字符串
+		console.log(cc(10,100));
+		console.log(cc.__proto__);//原型就是一个函数
+		console.log(typeof cc.__proto__ == 'function');//true
+		console.log('as' instanceof String);//false，类型并不等于是内部类
+
+		console.log(bc1.__proto__==bc2.__proto__);//true
+
+		console.log(cc.prototype);
+		var cObj=new cc();
+		console.log(cObj);
+		console.log(cObj.__proto__==cc.prototype);//true
+
+		cObj.name='Daniel';
+		console.log(cObj.hasOwnProperty('name'));//true
+		delete cObj.name;
+		console.log(cObj.hasOwnProperty('name'));//false
+		cc.prototype.name='DANIEL';
+		console.log(cObj.hasOwnProperty('name'));//false
+		console.log('name' in cObj);//true
+
+		function Ac(){}
+		// Ac.prototype={
+		// 	constructor:Ac,
+		// 	name:'DANIEL',
+		// 	age:12,
+		// 	run:function(){return this.name+'运行...'},
+		// };
+		Ac.prototype.name='DANIEL';
+		Ac.prototype.age=12;
+		Ac.prototype.run=function(){return this.name+'运行...';};
+
+		var acObj=new Ac();
+		console.log(acObj.__proto__);
+		console.log(Ac.prototype);
+
+		function f1(){
+			var obj=new Object();
+			obj.name='JACK';
+			obj.age=12;
+
+			return obj;
+		}
+
+		var g1=new f1();//寄生构造模式
+		var g2=f1();//稳妥构造模式
+
+		console.log(g1);
+		console.log(g2);
+		console.log(g1==g2);//false,地址不同
+
+		var t1=new Table();
+		console.log(t1);
+
+		function test(){
+			console.log('is? this.__proto__==test.prototype',this.__proto__==test.prototype);//false,如果在window中执行的话this指代的是window
+			console.log(this);
+			this.abc='fadfafda';//这句会在作用域中创建或者更新属性
+		}
+		this.abc="模式";
+		console.log("before: abc=",this.abc);//模式
+		test();
+		console.log("is there abc?",abc);//值被修改
+		console.log(test);
+
+
+		var testObj=new test();
+		console.log(testObj.__proto__==test.prototype);//true
+
+		//继承：使用原型链
+		function Box2(){
+
+		}
+		Box2.prototype.Box2={
+			name:'box2'
+		};
+
+		function Desk(){
+			//this.__proto__=new Box2();//this指代的是作用域而非函数。所以不能这样用
+		}
+		Desk.prototype=new Box2();
+		Desk.prototype.Desk={
+			name:'desk'
+		};		
+		Desk.prototype.Box2={
+			name:'Desk.box2'
+		};
+
+		function Table(){
+			
+		}
+		Table.prototype=new Desk();
+		Table.prototype.Table={
+			name:'table'
+		};
+		
+		var table=new Table();
+		console.log(table);
+
+		console.log(table instanceof Table);//true
+		console.log(table instanceof Desk);//true
+		console.log(table instanceof Box2);//true
+
+		console.log('===访问属性===');
+		console.log('Box2: ',table.Box2);//就近原则访问，先在本原型中查找，找到即返回，如果没有找到则直接父级一直到object
+		console.log('Desk: ',table.Desk);
+		console.log('Table: ',table.Table);
+
+		console.log('===构造函数结合对象冒充==');
+		function B(name, age){
+			this.name=name;
+			this.age=age;
+			
+		}
+
+		B.prototype.address='some place';
+		function D(name,age){
+			callParent(name,age);
+			
+		}
+		function callParent(name,age){
+			//对象冒充调用B并继承自B采用原型链,在new D时this指代D对象
+			D.prototype=new B(name,age);
+		}
+
+		var d=new D('Daniel', 12);
+		console.log(d);
+		console.log(d.__proto__.name);//B是在d的作用域中被调用的，name是直接属于d的
+		d.name='jack';
+		console.log(d.name);//jack
+		delete d.name;
+		console.log(d.name);//undefined
+
+		console.log(d.address);
+		d.address='other place';
+		console.log(d.address);
+		delete d.address;
+		console.log(d.address);//undefined
+
+
+
+
 		</script>
 	</head>
 	<body>
