@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+		<title>语法</title>
+		<script type='text/javascript'>
+			console.log(1==1.0);//true
+			console.log(NaN instanceof Number);//false
+			console.log(typeof NaN == 'number');//true
+			console.log(isNaN(1/0*0));//true
+			if(true){
+				//if等代码块并不会创建一个新的作用域
+				var cc=12;
+			}
+
+			console.log(cc);//不像其他语言，能够访问到代码块中定义的变量，因为他们属于同一命名空间
+
+			for(var x in 'fafadfa'){
+				console.log(x);
+			}
+
+			//throw {name:'error',message:'unknown reason'};//抛出一个异常对象
+
+			//typeof 的结果可能是：number string boolean 和undefined function object
+
+			console.log(10/3);//3.333333333
+
+			//特殊：&& || ,最终的结果都是最后计算的那个表达式的值
+
+			var a=12 && true;
+			console.log(a);//true
+			a=false&&true;
+			console.log(a);//false
+
+			var b=12||false;
+			console.log(b);//12
+			b=false||0;
+			console.log(b);//0
+
+
+
+
+
+
+
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
