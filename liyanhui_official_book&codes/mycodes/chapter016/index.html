@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+		<title>匿名函数和闭包</title>
+		<script type="text/javascript">
+			//直接在window中定义匿名函数会报错
+			//function(){return 1;}
+			//自执行
+			(function(){console.log('表达式自执行')})();
+
+			//返回函数
+			function box(){
+				return function(){return '返回函数';};
+			}
+
+			console.log(box()());
+
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
