@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+		<title>对象</title>
+		<script type='text/javascript'>
+			console.log(typeof undefined);//undefined
+			console.log(typeof null);//object
+
+			//使用对象字面量
+			var o1={
+				name:'Daniel',
+				age:12,
+				'first-score':10,
+				'last-score':100,//-不是合法的js标识符，需要使用引号
+			};
+			console.log(o1);
+
+			//使用||填充默认值
+			var cc=cc||12;
+			console.log(cc);//12
+
+			//使用&&避免空引用
+			var ac=o1.address&&o1.address.name;
+			console.log(ac);//undefined
+
+			//||和&&操作在某方面省略了判断
+
+			
+
+
+
+
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
