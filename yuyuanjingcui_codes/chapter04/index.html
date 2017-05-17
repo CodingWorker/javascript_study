@@ -16,9 +16,78 @@
 			//函数调用模式，this绑定到运行作用域，一般为全局作用域
 
 			//构造器调用模式
+			var ff=f1;
+			var OStatus=function(status){
+				this.status=status;//this绑定到以构造方法调用函数而新创建的对象中
+			}
+
+			OStatus.prototype.getStatus=function(){
+				return this.status;//this指代OStatus.prototype对象
+			}
+			var os1=new OStatus(200);
+			var os2=new OStatus(400);
+			console.log(os1.status);//200,this绑定到os1;os1通过__proto__连接到函数的prototype
+			console.log(os2.status);//400,this绑定到os2
+
+			console.log(os1.getStatus());
+			console.log(os2.getStatus());
+			console.log(os1.prototype);//undefined,非函数没有prototype？？
+			//os1.__proto__.cc='cc';//os1.__proto__和OStatus.prototype一样。不能再这上面更改
+			os1.cc='cc';
+			console.log(os1.cc);//在对象实例上修改
+
+			console.log(OStatus.prototype.cc);
+
+			var status='window.status';
+			console.log(OStatus.prototype.getStatus.apply(this,[]));//window.status
+
+			//如果参数为空则可以不传递
+			console.log(OStatus.prototype.getStatus.apply(this));//window.status
+
+			//使用call
+			console.log(OStatus.prototype.getStatus.call(this));//window.status
+
+			function sum(num1,num2){
+				if(typeof num1 !='number' || typeof num2 != 'number'){
+					throw {
+						errorcode:1,
+						errormsg:'Type Error,the arguments should be number'
+					};
+				}
+				console.log(arguments);
+				for(var i=0;i<arguments.length;i++){
+					console.log('第'+i+'个参数: '+arguments[i]);
+				}
+
+				console.log(arguments.callee);
+				return num1+num2;
+			}
+
+			window.sum(10,100);
+			try{
+				window.sum('10',12);
+			}catch(e){
+				console.log(e.errorcode);
+				console.log(e.errormsg);
+			}
 			
+			console.log(Number.__proto__==Function.prototype);//true
+			console.log(window.hasOwnProperty('cc'));//false
+			console.log(window.hasOwnProperty('sum'));//true
 
+			function zone(){
+				var a=1,b=5;
+				var internal=function(){
+					console.log('internal:a=>'+a);
+					a=12;
+					console.log('internal:a=>'+a);
+				}
 
+				internal();
+				console.log('outer:a=>'+a);
+			}
+
+			zone();
 		</script>
 	</head>
 	<body>
