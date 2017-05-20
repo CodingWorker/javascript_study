@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+		<title>正则表达式</title>
+		<script type='text/javascript'>
+			//方法：regexp.exec regexp.test string.match string.replace string.search string.split
+
+			//js的正则表达式相较于等效的字符串运算有性能优势，因此应该多使用正则表达式
+
+			var reg_url=/^(https?):\/\/(w{3})\.\w+\.(info|com)((?:\/(?:\w+?))*(?:\?(\w+=\w+?)?))?/;
+			var url='http://www.baidu.info/xinlnag/c?a=1&b=1&c=3&d=2';
+			console.log(reg_url.test(url));
+			console.log(reg_url.exec(url));
+
+			var reg_str='https?:\\/\\/w{3}';
+			var reg_obj=new RegExp(reg_str,'i');
+			console.log(reg_obj.source);
+			console.log(reg_obj.exec(url));
+			console.log(reg_url.source);
+			var reg_t1=/test1/;
+			var reg_t2=/test2/;
+			console.log(reg_t1===reg_t2);//false
+
+			console.log('info'.match(/in|int/));
+			console.log('?inf=2&a=1'.match(/\&\w/));//\会将特殊字符字面化，因此任然能够匹配成功
+
+			console.log('this is a test'.match(/\b\w{2}\b/));//is
+			console.log('this is a test'.match(/[\b\w{2}\b]/));//t
+
+			console.log('这 是 一 个 测试'.match(/\b.{2}\b/));//\b使用\w，对其他非英语支持性不好，所以结果为null
+
+			//重复匹配
+			console.log('actest&abc&testfd'.match(/(\w{4})&\w{3}&\1/));//test&abc&test
+
+			//向前匹配
+			console.log('https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu'.match(/https?:\/\/w{3}\.\w+\.(com|info|cn|org|net)/))
+
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

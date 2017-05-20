@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+		<title>数组</title>
+		<script type='text/javascript'>
+			var arr=['a'];
+			console.log(arr);
+			console.log(arr.__proto__==Array.prototype);//true
+			var arr2={1:1,2:2};
+			console.log(arr2);
+			console.log(arr2.__proto__===Array.prototype);//false
+			console.log(arr2.__proto__==Object.prototype);//true
+
+			arr['a']=12;
+			arr[100]=1;
+			console.log(arr['a']);
+			console.log(typeof arr);
+			console.log(arr);
+			console.log(arr.length);//101
+			//缩小数组
+			arr.length=10;
+			console.log(arr[100]);//超过长度的索引将被删除
+
+			var myArr=[];
+			myArr['ac']=12;
+			myArr['a']='a';
+			console.log(myArr);
+			console.log(myArr.length);//0,长度就是最大数字索引+1，不可信
+
+			for(x in myArr){
+				console.log(x);
+			}
+
+			console.log(myArr.constructor===Array);//true
+
+			//判断是array而非object（array也是object），这里只是为了区分js数组和js对象
+			var is_arr=function(value){
+				return value && typeof value ==='object' && value.constructor===Array;
+			}
+
+			console.log(is_arr(myArr));//true
+			console.log(is_arr({'a':1}));//false
+			console.log({}.constructor);//Object
+
+			//数组中的方法
+			console.log(Array.prototype);
+
+			Array.dim=function(dimension,initial){
+				var a=[],i;
+				for(i=0;i<dimension;i+=1){
+					a[i]=initial;
+				}
+
+				return a;
+			}
+
+			//定义并初始化
+			var matrix=Array.dim(10,0);
+			console.log(matrix);
+
+			Array.matrix=function(m,n,initial){
+				var a=[],i,j;
+				for(i=0;i<m;i+=1){
+					a[i]=[];
+					for(j=0;j<n;j+=1){
+						a[i][j]=initial;
+					}
+				}
+
+				return a;
+			}
+
+			//定义数组的数组并初始化
+			var matrix=Array.matrix(5,5,0);
+			console.log(matrix);
+
+
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

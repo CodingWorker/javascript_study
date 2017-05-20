@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content='text/html;charset=utf-8' />
+		<title>继承</title>
+		<script type='text/javascript'>
+			function CreateObj(){
+
+			}
+
+			var obj=new CreateObj();
+			console.log(obj);
+			console.log(obj instanceof CreateObj);//true
+
+			function Mammal(name){
+				this.name=name;
+			}
+
+			//扩充函数原型
+			Mammal.prototype.get_name=function(){
+				return this.name;
+			}
+
+			Mammal.prototype.says=function(){
+				return this.saying || '';
+			}
+
+			//创建一个对象
+			var myMammal=new Mammal('hello world');
+			console.log(myMammal.get_name());
+
+			var Cat=function(name){
+				this.name=name;
+				this.saying='meow';
+			}
+
+			//继承自Mammal
+			Cat.prototype=new Mammal();
+
+			//扩充原型
+			Cat.prototype.purr=function(n){
+				var i,s='';
+				for(i=0;i<n;i+=1){
+					if(s){
+						s+='-';
+					}
+
+					s+='r';
+				}
+
+				return s;
+			}
+
+			//重写方法
+			Cat.prototype.get_name=function(){
+				return this.says()+' '+this.name+'  '+this.says();
+			}
+
+			var myCat=new Cat('hello js');
+			var says=myCat.says();
+			console.log(says);
+			var purr=myCat.purr(5);
+			console.log(purr);
+			var name=myCat.get_name();
+			console.log(name);
+
+			Function.prototype.method=function(name,func){
+				//当作为参数传递的时候使用[]而不是.
+				this.prototype[name]=func;
+				return this;
+			}
+
+			Function.method('inherits',function(parent){
+				this.prototype=new parent();
+				return this;
+			});
+
+			//继承2.0
+			var Cat2=function(name){
+				this.name=name;
+				this.saying='meow';
+			}
+			.inherits(Mammal)
+			.method('purr',function(n){
+				var i,s='';
+				for(i=0;i<n;i+=1){
+					if(s){
+						s+='-';
+					}
+
+					s+='r';
+				}
+
+				return s;
+			}).method('get_name',function(){
+				// return this.says()+'  '+this.name+'  '+this.says();
+			});
+
+
+			var myCat2=new Cat2('hello cat2');
+			console.log(myCat2);
+			console.log(myCat2.purr(3));
+			console.log(myCat.get_name());
+
+			console.log(myCat2);
+
+			var mm={
+				name:'herb the mammal',
+				get_name:function(){
+					return this.name;
+				},
+				says:function(){
+					return this.saying||'';
+				}
+			};
+
+			Object.beget=function(o){
+				var f=function(){};
+				f.prototype=o;
+				return new f;
+			}
+
+			console.log(mm);
+			
+			//定制新的实例
+			var o1=Object.beget(mm);
+			console.log(o1);
+			console.log(o1.get_name());
+			o1.name='o1 object';
+			console.log(o1.get_name());
+
+			//5.5部件
+			var eventuality=function(that){
+				var registry={};
+				that.fire=function(event){
+					var array,
+						func,
+						handler,
+						i,
+						type=typeof event==='string'?event:event.type;
+
+					if(registry.hasOwnProperty(type)){
+						array=registry[type];
+						for(i=0;i<array.length;i+=1){
+							hander=array[i];
+							func=handler.method;
+							if(typeof func==='string'){
+								func=this[func];
+							}
+
+							func.apply(this,handler.parameters||[event]);
+						}
+					}
+
+						return this;
+					};
+			
+					that.on=function(type,method,parameters){
+						var handler={
+							method:method,
+							parameters:parameters
+						};
+						if(registry.hasOwnProperty(type)){
+							registry[type].push(handler);
+						}else{
+							registry[type]=[handler];
+						}
+
+						return this;
+					};
+
+				return that;
+			};
+
+
+
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
