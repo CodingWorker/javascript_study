@@ -36,7 +36,29 @@
 			var str='https://www.baidu.com';
 			console.log(str.indexOf('T'));
 
+			function outter(){
+				var a='outer';
+				console.log(this.a);
+				function inner(){
+					var a='inner';
+					console.log(this.a);
+				}
 
+				inner();
+			}
+			console.log('window.a:',this.a);
+			outter();
+			function cc(){
+			}
+			
+			console.log(cc.length);//函数形参的个数
+			console.log('call' in cc);
+			console.log('apply' in cc);
+			
+			console.log(cc.prototype);
+			console.log(new Object);
+			console.log({});
+			console.log(Function.prototype===(new Function).__proto__)
 
 		</script>
 	</head>
