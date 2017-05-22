@@ -58,7 +58,30 @@
 			console.log(cc.prototype);
 			console.log(new Object);
 			console.log({});
-			console.log(Function.prototype===(new Function).__proto__)
+			console.log(Function.prototype===(new Function).__proto__);//true
+
+			function People(name,age){
+				this.name=name;
+				this.age=age;
+				this.sayHello=function(){
+					return 'People say hello in People';
+				}
+			}
+			People.prototype.sayHello=function(){
+					return 'People say hello in People.prototype';
+			}
+
+			function Student(name,age,sid){
+				People.call(this,name,age);
+				this.sid=sid;
+				this.sayHello=function(){
+					return 'Student say hello in Student';
+				}
+			}
+
+			var s=new Student('Daniel', 12, 10001);
+			console.log(s);
+			console.log(s.sayHello());
 
 		</script>
 	</head>
