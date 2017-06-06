@@ -1,0 +1,47 @@
+
+btoa 将字符串按照base64编码
+atob 将base64编码字符串解码
+
+判断值是否在数组中
+$.inArray
+
+
+
+不需要对象冒充，只需要将this定义别名如self或者that即可，然后在异步操作中调用self.xxx方法
+ doAjax: function (t, a) {
+                var n = this;  //替换this避免对象冒充
+                "waiting" !== this.state && this.setState("waiting"), a = a || "", $.ajax({
+                    url: e + "?" + a,
+                    type: "POST",
+                    data: t,
+                    processData: !1,
+                    contentType: !1,
+                    success: function (t) {
+                        n.uploadComplete(t)
+                    }, error: function () {
+                        n.setState("error")
+                    }, always: function () {}
+                })
+            }
+
+
+
+encodeURI过时，使用encodeURIComponent替代，该函数会将特殊字符也编码
+encodeURIComponent(e)
+
+
+避免xss攻击，对特殊字符转义：
+function xss(e) {
+        return e.toString()
+        .replace(/[<%3C]/g, "&lt;")
+        .replace(/[>%3E]/g, "&gt;")
+	.replace(/"/g, "&quot;")
+	.replace(/'/g, "&#39;")
+    }
+
+
+返回false可以使用!1代替false
+
+
+
+
