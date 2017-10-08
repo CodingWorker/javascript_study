@@ -1,0 +1,55 @@
+body{
+	background-color: #eee;/*背景色*/
+}
+
+.no-underline{
+	text-decoration: none;
+}
+
+a{
+	background: #ccc;
+	/*color控制文本的颜色*/
+	color:red;
+}
+
+/*css仅有这一种注释*/
+.img-test{
+	width:100px;
+	height: 100px;
+}
+
+/*去掉有/无序列表前面的.*/
+ul{
+	list-style: none;
+}
+
+/*设置字体粗细*/
+b{
+	font-weight: normal;
+}
+
+input{
+	width:300px;
+}
+
+.border-control{
+	width:500px;
+	height:200px;
+	/*控制边框*/
+	border-style:dashed;
+	border-color:red;
+	border-width:5px;
+	border-radius: 10px;
+	border-bottom: none;
+
+	/*设置鼠标悬停样式*/
+	cursor: pointer;
+	background: url('../images/demo.png') -100px -50px no-repeat;
+}
+
+.block{
+	height:1px;
+	border:1px solid red;
+}
+
+
