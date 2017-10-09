@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>class extend demo</title>
+		<!-- 引入jquery作者写的继承脚本 -->
+		<script>
+			window.onload=function(){
+				var Person=Class.extend({
+					//构造函数
+					init:function(){
+						console.log('Person init');
+					},
+					change:function(){
+						console.log('Person changed');
+					}
+				});
+
+				var a=new Person();
+				console.log(a);
+				console.log(a.change());
+			}
+		</script>
+	</head>
+</html>

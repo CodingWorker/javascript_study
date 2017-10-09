@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>extend demo</title>
+		<script>
+			window.onload=function(){
+				function Person(){
+					this.sayHello=function(){
+						return "Peson say hello in Person";
+					}
+				}
+
+				Person.prototype.sayHello=function(){
+					return 'Person say hello in Person.prototype';
+				}
+
+				function Student(){
+
+				}
+
+				Student.prototype=new Person();
+				var s=new Student();
+				console.log(s);//Student
+				console.log(s.sayHello());//Peson say hello in Person
+			}
+		</script>
+	</head>
+</html>
