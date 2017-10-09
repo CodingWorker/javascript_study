@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>constructor demo</title>
+		<script>
+			window.onload=function(){
+				function Person(name,age,sex){
+					this.name=name;
+					this.age=age;
+					this.sex=sex;
+				}
+
+				var a=new Person('Daniel',12,1);
+				console.log(Person.prototype.constructor);
+				console.log(a.constructor);
+				console.log('Person===Person.prototype.constructor? '+(Person===Person.prototype.constructor));//true
+				console.log('a.constructor==Person? '+(a.constructor==Person));//true
+			}
+		</script>
+	</head>
+</html>
