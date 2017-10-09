@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>Function demo</title>
+		<script>
+			window.onload=function(){
+				// 所有的的字面量function都是Function的实例
+				function func(){
+
+				}
+
+				console.log('func instanceof Function? '+(func instanceof Function));//true
+
+				var func2=new Function('a','b','console.log(a+b);');
+				console.log(func2);
+				console.log('func2 instanceof Function? '+(func2 instanceof Function));//true
+			}
+		</script>
+	</head>
+</html>

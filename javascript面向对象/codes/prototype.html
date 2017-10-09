@@ -1,0 +1,12 @@
+<html>
+	<head>
+		<title>prototype demo</title>
+		<script>
+			window.onload=function(){
+				console.log('Function.prototype===Object.__proto__? '+(Function.prototype===Object.__proto__));//true
+				console.log('Function.prototype.__proto__===Object.prototype? '+(Function.prototype.__proto__===Object.prototype));//true
+				console.log('new Funtion instanceof Object? '+(new Function instanceof Object));//true
+			}
+		</script>
+	</head>
+</html>

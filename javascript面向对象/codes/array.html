@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>array demo</title>
+		<script>
+			window.onload=function(){
+				var arr=new Array();
+				arr[0]='a';
+				arr[1]=1;
+				console.log(arr);
+				var arr2=['a',1];
+				console.log(arr2);
+
+				var arr3=new Array(2);
+				console.log(arr3.length);//2
+				console.log(arr3[0]);//undefined
+				console.log(arr3[1]);//undefined
+				console.log(arr3[2]);//undefined,能越界
+				console.log(arr3);//[undefined × 2]
+				arr3[0]=0;
+				console.log(arr3.length);//2
+				arr3[1]='a';
+				console.log(arr3.length);//2
+				arr3[2]=2;
+				console.log(arr3.length);//3
+				console.log(arr3);
+			}
+		</script>
+	</head>
+</html>

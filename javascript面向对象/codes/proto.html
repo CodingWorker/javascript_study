@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>prototype example</title>
+		<script>
+			window.onload=function(){
+				function Person(name,age,sex){
+					this.name=name;
+					this.age=age;
+					this.sex=sex;
+				}
+
+				function Student(name,age,sex,score){
+					this.name=name;
+					this.age=age;
+					this.sex=sex;
+					this.score=score;
+				}
+
+				// Student.prototype={
+				// 	aa:'student-aa'
+				// };
+				// Student.prototype=Math;
+
+				Student.prototype.info=function(){
+					return JSON.stringify(this);
+				}
+
+				var a=new Student('Daniel',12,1,100);
+				console.log(a);
+				console.log('a instanceof Student? '+(a instanceof Student));
+				// console.log(a.aa);//student-aa,查找原型链
+				// console.log(a.random());//会调用原型链上的方法
+
+				//原型上定义方法
+				console.log(a.info());//{"name":"Daniel","age":12,"sex":1,"score":100}
+				
+
+			}
+		</script>
+	</head>
+</html>

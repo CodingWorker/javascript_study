@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<title>regexp examples</title>
+		<script>
+			window.onload=function(){
+				var reg1=/\w/ig;
+				var reg2=new RegExp('\\w','ig');
+				console.log(reg1);//   /\w/gi
+				console.log(reg2);//   /\w/gi
+				console.log('reg1==reg2? '+(reg1==reg2));//false
+			}
+		</script>
+	</head>
+</html>
