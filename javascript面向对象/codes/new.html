@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>面向对象</title>
+		<script>
+			window.onload=function(){
+				function Person(name,age,sex){
+					this.name=name;
+					this.age=age;
+					this.sex=sex;
+				}
+				Person.prototype.toString = function() {
+					return JSON.stringify(this);
+				};
+				var a=new Person('Daniel',12,1);
+				var b=new Person('Jack',10,1);
+				var c=new Person('Mary',11,0);
+				console.log(a.toString());//{"name":"Daniel","age":12,"sex":1}
+				console.log(b);
+				console.log(c);
+
+			}
+		</script>
+	</head>
+</html>
