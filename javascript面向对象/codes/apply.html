@@ -1,0 +1,17 @@
+<html>
+	<head>
+	<meta charset="utf-8">
+		<title>rule3</title>
+	</head>
+	<body>
+		<script>
+		 	function fun(){
+		 		console.log(this);
+		 		console.log(arguments.length);
+		 	}
+
+		 	fun();//0
+		 	fun.apply({},[1,2]);//2
+		</script>
+	</body>
+</html>

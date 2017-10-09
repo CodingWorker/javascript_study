@@ -1,0 +1,32 @@
+<html>
+	<head>
+	<meta charset="utf-8">
+		<title>rule3</title>
+		<style>
+			div{
+				width:200px;
+				height:100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1">box1</div>
+		<div id="box2">box2</div>
+		<div id="box3">box3</div>
+		<script>
+			var oBox1=document.getElementById('box1');
+			var oBox2=document.getElementById('box2');
+			var oBox3=document.getElementById('box3');
+
+			function changeBg(){
+				console.log(this);
+				this.style.background='red';
+			}
+
+			oBox1.onclick=changeBg;
+			oBox2.onclick=changeBg;
+			oBox3.onclick=changeBg;
+
+		</script>
+	</body>
+</html>
